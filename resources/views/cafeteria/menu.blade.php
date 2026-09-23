@@ -17,13 +17,21 @@
             color: #F8FAFC;
             scroll-behavior: smooth;
         }
+
+        /* 🍔 خلفية صور الأكل الفخمة مع تدرج لوني */
+        .food-background {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.96)), 
+                              url('https://images.unsplash.com/photo-1543353071-873f17a7a088?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
     </style>
 </head>
 
-<body class="min-h-screen selection:bg-amber-500 selection:text-slate-950 pb-28">
+<body class="food-background min-h-screen selection:bg-amber-500 selection:text-slate-950 pb-28">
 
     <div id="success-banner" class="fixed top-0 left-0 right-0 z-[100] transform -translate-y-full transition-transform duration-300 bg-emerald-600 text-white shadow-2xl py-3 px-6 flex items-center justify-between border-b border-emerald-500/50 backdrop-blur-md">
-
         <div class="flex items-center gap-2 font-bold text-sm">
             <span class="text-lg">🚀</span>
             <span id="success-message">تم إرسال طلبك بنجاح!</span>
@@ -40,7 +48,7 @@
     </div>
 
 
-    <nav class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 shadow-lg">
+    <nav class="bg-slate-900/85 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 shadow-lg">
         <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
             <div class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold px-4 py-2 rounded-2xl flex items-center gap-2 shadow-inner">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -68,7 +76,7 @@
 
     <main class="max-w-6xl mx-auto px-4 py-10">
 
-        <div class="text-center mb-16 bg-gradient-to-br from-slate-900 via-slate-900/90 to-amber-950/30 p-10 md:p-16 rounded-[2.5rem] border border-amber-500/20 shadow-2xl relative overflow-hidden">
+        <div class="text-center mb-16 bg-gradient-to-br from-slate-900/95 via-slate-900/90 to-amber-950/30 p-10 md:p-16 rounded-[2.5rem] border border-amber-500/20 shadow-2xl relative overflow-hidden backdrop-blur-sm">
             <div class="absolute -right-20 -top-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -93,12 +101,12 @@
         </div>
 
 
-        <div id="menu-section" class="text-center mb-12 bg-slate-900/60 p-8 rounded-3xl border border-slate-800 shadow-xl">
+        <div id="menu-section" class="text-center mb-12 bg-slate-900/80 backdrop-blur-md p-8 rounded-3xl border border-slate-800 shadow-xl">
             <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">ماذا تود أن تطلب اليوم؟</h2>
             <p class="text-slate-400 text-xs md:text-sm max-w-md mx-auto mb-6">ابحث في القائمة الموسعة أو اختر ما يعجبك مباشرة.</p>
 
             <div class="max-w-xl mx-auto">
-                <div class="flex gap-2 bg-slate-800/80 p-2 rounded-2xl border border-slate-700 shadow-inner">
+                <div class="flex gap-2 bg-slate-800/90 p-2 rounded-2xl border border-slate-700 shadow-inner">
                     <input
                         type="text"
                         id="live-search-input"
@@ -116,7 +124,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 
-            <div class="menu-category bg-slate-900/95 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
+            <!-- قسم الوجبات السريعة والبرجر -->
+            <div class="menu-category bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div class="flex items-center gap-3">
@@ -128,13 +137,16 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-4 mb-4">
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">تشيز برجر جابور</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=120&q=80" alt="تشيز برجر" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">تشيز برجر جابور</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">برجر لحم بقري مشوي مع جبنة شيدار إضافية ومصوص خاص.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">برجر لحم بقري مشوي مع جبنة شيدار إضافية ومصوص خاص.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">85 ج.م</span>
@@ -142,13 +154,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">دجاج زنگر حار</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 92%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=120&q=80" alt="زنگر حار" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">دجاج زنگر حار</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 92%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">ساندويتش دجاج مقرمش وسبايسي مع صوص الحار الخاص.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">ساندويتش دجاج مقرمش وسبايسي مع صوص الحار الخاص.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">75 ج.م</span>
@@ -156,13 +171,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيج كينج لحم</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 96%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=120&q=80" alt="بيج كينج لحم" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيج كينج لحم</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 96%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">طابقين من اللحم المشوي على الفحم مع الجبن.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">طابقين من اللحم المشوي على الفحم مع الجبن.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">110 ج.م</span>
@@ -170,13 +188,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">دجاج بوب كورن مقرمش</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 94%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=120&q=80" alt="بوب كورن" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">دجاج بوب كورن مقرمش</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 94%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">قطع دجاج لذيذة مقرمشة تقدم مع الصوص المفضل.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">قطع دجاج لذيذة مقرمشة تقدم مع الصوص المفضل.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">65 ج.م</span>
@@ -187,7 +208,8 @@
                 </div>
             </div>
 
-            <div class="menu-category bg-slate-900/95 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
+            <!-- قسم البيتزا والمعجنات -->
+            <div class="menu-category bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div class="flex items-center gap-3">
@@ -199,13 +221,16 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-4 mb-4">
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيتزا مارجريتا</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 90%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=120&q=80" alt="مارجريتا" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيتزا مارجريتا</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 90%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">جبنة موتزريلا طازجة صوص طماطم وأعشاب.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">جبنة موتزريلا طازجة صوص طماطم وأعشاب.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">120 ج.م</span>
@@ -213,13 +238,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيتزا رانش دجاج</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=120&q=80" alt="رانش دجاج" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">بيتزا رانش دجاج</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">قطع دجاج طرية مع صوص الرانش والجبنة المذابة.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">قطع دجاج طرية مع صوص الرانش والجبنة المذابة.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">145 ج.م</span>
@@ -227,13 +255,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">فطيرة مكس جبن</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 89%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=120&q=80" alt="مكس جبن" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">فطيرة مكس جبن</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 89%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">مزيج فاخر من الجبن الرومي والموتزريلا والشيدر.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">مزيج فاخر من الجبن الرومي والموتزريلا والشيدر.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">90 ج.م</span>
@@ -241,13 +272,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">توسيرات دجاج</h3>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 91%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-amber-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=120&q=80" alt="تورتيلا دجاج" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-amber-400 text-sm item-name">توسيرات دجاج</h3>
+                                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">توافق 91%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">قطع دجاج مقرمشة ملفوفة في التورتيلا.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">قطع دجاج مقرمشة ملفوفة في التورتيلا.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">65 ج.م</span>
@@ -258,7 +292,8 @@
                 </div>
             </div>
 
-            <div class="menu-category bg-slate-900/95 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
+            <!-- قسم المشروبات الساخنة -->
+            <div class="menu-category bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div class="flex items-center gap-3">
@@ -270,13 +305,16 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-4 mb-4">
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">إسبريسو دبل</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 96%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=120&q=80" alt="إسبريسو" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">إسبريسو دبل</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 96%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">قهوة مركزة ونقية بقوام غني.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">قهوة مركزة ونقية بقوام غني.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">30 ج.م</span>
@@ -284,13 +322,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">كابتشينو رويال</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 92%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=120&q=80" alt="كابتشينو" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">كابتشينو رويال</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 92%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">إسبريسو مع حليب فوم ورغوة غنية.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">إسبريسو مع حليب فوم ورغوة غنية.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">40 ج.م</span>
@@ -298,13 +339,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">شاي أحمر بالنعناع</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 89%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=120&q=80" alt="شاي بالنعناع" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">شاي أحمر بالنعناع</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 89%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">شاي أصلي ومنعش.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">شاي أصلي ومنعش.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">20 ج.م</span>
@@ -312,13 +356,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">هو شوكلت بلجيكي</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 97%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=120&q=80" alt="هو شوكلت" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">هو شوكلت بلجيكي</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 97%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">شوكولاتة ساخنة غنية مع المارشملو.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">شوكولاتة ساخنة غنية مع المارشملو.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">45 ج.م</span>
@@ -329,7 +376,8 @@
                 </div>
             </div>
 
-            <div class="menu-category bg-slate-900/95 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
+            <!-- قسم المشروبات الباردة والمنعشة -->
+            <div class="menu-category bg-slate-900/90 backdrop-blur-md rounded-3xl shadow-xl border border-slate-800 overflow-hidden p-6 md:p-8 flex flex-col justify-between hover:border-slate-700 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
                         <div class="flex items-center gap-3">
@@ -341,13 +389,16 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-4 mb-4">
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">ايس كوفي ملتر</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 94%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=120&q=80" alt="ايس كوفي" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">ايس كوفي ملتر</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 94%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">قهوة باردة منعشة بالحليب والثلج.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">قهوة باردة منعشة بالحليب والثلج.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">45 ج.م</span>
@@ -355,13 +406,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">عصير مانجو طازج</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 98%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=120&q=80" alt="عصير مانجو" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">عصير مانجو طازج</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 98%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">مانجو طازج 100% وممثل.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">مانجو طازج 100% وممثل.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">40 ج.م</span>
@@ -369,13 +423,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">ميلك شيك فراولة</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=120&q=80" alt="ميلك شيك" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">ميلك شيك فراولة</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 95%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">آيس كريم فانيليا مع صوص الفراولة الطازج.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">آيس كريم فانيليا مع صوص الفراولة الطازج.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">50 ج.م</span>
@@ -383,13 +440,16 @@
                             </div>
                         </div>
 
-                        <div class="group menu-item flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
-                            <div class="pr-2">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">موهيتو ليمون ونعناع</h3>
-                                    <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 93%</span>
+                        <div class="group menu-item flex items-center justify-between bg-slate-800/60 hover:bg-slate-800 p-4 rounded-2xl border border-slate-700/60 hover:border-sky-500/50 transition-all">
+                            <div class="flex items-center gap-3 pr-2">
+                                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=120&q=80" alt="موهيتو" class="w-16 h-16 rounded-xl object-cover border border-slate-700 shrink-0">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <h3 class="font-bold text-white group-hover:text-sky-400 text-sm item-name">موهيتو ليمون ونعناع</h3>
+                                        <span class="text-[10px] bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full font-bold">توافق 93%</span>
+                                    </div>
+                                    <p class="text-slate-400 text-xs">مشروب منعش محسن مع النعناع والليمون الطبيعي.</p>
                                 </div>
-                                <p class="text-slate-400 text-xs">مشروب منعش محسن مع النعناع والليمون الطبيعي.</p>
                             </div>
                             <div class="flex flex-col items-end gap-2 shrink-0">
                                 <span class="text-emerald-400 font-extrabold text-xs bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/20">45 ج.م</span>
@@ -402,7 +462,8 @@
 
         </div>
 
-        <div class="bg-slate-900/90 border border-slate-800 p-6 rounded-3xl shadow-xl">
+        <!-- بروفايل تفضيلات العميل -->
+        <div class="bg-slate-900/90 backdrop-blur-md border border-slate-800 p-6 rounded-3xl shadow-xl">
             <h2 class="text-lg font-bold text-amber-400 mb-3 flex items-center gap-2">
                 <span>⚙️</span> بروفايل تفضيلات العميل الذكي
             </h2>
@@ -490,12 +551,10 @@
 
 
     <script>
-
         let cart = [];
         let currentOrderId = null;
         let bannerTimeout = null;
 
-        // إحصائيات ديناميكية محفوظة ومحمية من الثبات
         let cafeteriaStats = JSON.parse(localStorage.getItem('ya_cafeteria_stats')) || {
             totalSales: 1650,
             totalCustomers: 40,
@@ -525,8 +584,6 @@
         }
         window.addEventListener('DOMContentLoaded', loadPreferences);
 
-
-        // 🔍 دالة البحث الفوري والذكي في المنيو
         function filterMenu() {
             let query = document.getElementById('live-search-input').value.toLowerCase().trim();
             let items = document.querySelectorAll('.menu-item');
@@ -543,7 +600,6 @@
                 }
             });
 
-            // إخفاء الكاتيجوري لو كل عناصرها اختفت
             categories.forEach(cat => {
                 let visibleItems = cat.querySelectorAll('.menu-item[style*="display: flex"], .menu-item:not([style*="display: none"])');
                 if (visibleItems.length === 0 && query !== '') {
@@ -553,7 +609,6 @@
                 }
             });
         }
-
 
         function addToCart(name, price) {
             let existingItem = cart.find(item => item.name === name);
@@ -568,7 +623,6 @@
             }
             updateCartUI();
         }
-
 
         function updateCartUI() {
             let cartBar = document.getElementById('cart-bar');
@@ -588,12 +642,10 @@
             }
         }
 
-
         function clearCart() {
             cart = [];
             updateCartUI();
         }
-
 
         function showSuccessAlert(message, orderId) {
             currentOrderId = orderId;
@@ -612,7 +664,6 @@
             }, 6000);
         }
 
-
         function hideSuccessAlert() {
             let banner = document.getElementById('success-banner');
             banner.classList.add('-translate-y-full');
@@ -623,7 +674,6 @@
 
             currentOrderId = null;
         }
-
 
         async function cancelOrder() {
             if (!currentOrderId) return;
@@ -653,7 +703,6 @@
                 alert('تعذر الاتصال بالخادم لإلغاء الطلب.');
             }
         }
-
 
         async function checkout() {
             if (cart.length === 0) return;
@@ -698,19 +747,16 @@
             }
         }
 
-
         function toggleChatWindow() {
             let win = document.getElementById('chat-window');
             win.classList.toggle('hidden');
         }
-
 
         function handleChatKeyPress(e) {
             if (e.key === 'Enter') {
                 sendChatMessage();
             }
         }
-
 
         function sendChatMessage() {
             let input = document.getElementById('chat-input');
@@ -726,7 +772,6 @@
                 appendMessage(botReply, 'bot');
             }, 500);
         }
-
 
         function appendMessage(text, sender) {
             let container = document.getElementById('chat-messages');
@@ -744,13 +789,6 @@
             container.scrollTop = container.scrollHeight;
         }
 
-
-        /*
-        =====================================================
-        AI CHATBOT (Y&A)
-        =====================================================
-        */
-
         function generateLocalBotResponse(query) {
             let q = query.toLowerCase().trim();
 
@@ -758,7 +796,6 @@
                 return '٠١٢٣٤٥٦٧٨٩'.indexOf(digit);
             });
 
-            // إحصائيات الأدمن (ديناميكية ومتغيرة ومحفوظة)
             if (
                 q.includes('إحصائيات') || q.includes('احصائيات') ||
                 q.includes('المبيعات') || q.includes('مبيعات') ||
@@ -880,7 +917,6 @@
 
             return `تمام يا فنان 🤖👌 أقدر أساعدك تختار من منيو Y&A أو تشوف إحصائيات المطعم والمبيعات.`;
         }
-
     </script>
 
 </body>
