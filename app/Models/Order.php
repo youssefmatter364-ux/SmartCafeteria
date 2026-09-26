@@ -9,17 +9,24 @@ class Order extends Model
 {
     use HasFactory;
 
-    // السماح بتعبئة الحقول لتجنب مشاكل Mass Assignment
     protected $fillable = [
         'user_id',
         'total_price',
         'status',
-        'payment_status'
+        'payment_status',
     ];
 
-    // تعريف العلاقة مع جدول order_items
+    protected $casts = [
+        'total_price' => 'decimal:2',
+    ];
+
     public function items()
     {
-        return $this->hasMany(OrderItem::class, 'order_id');
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

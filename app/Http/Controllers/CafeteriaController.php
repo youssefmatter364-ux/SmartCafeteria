@@ -15,55 +15,108 @@ class CafeteriaController extends Controller
         $query = trim($request->input('query'));
 
         // جلب التصنيفات مع تصفية الأطباق بناءً على البحث أو إحضارها كاملة
-        $categories = Category::with(['foodItems' => function($q) use ($query) {
-            if (!empty($query)) {
-                $keywords = explode(' ', $query);
-                $q->where(function($subQuery) use ($keywords, $query) {
-                    foreach ($keywords as $word) {
-                        if (mb_strlen($word) > 1) {
-                            $subQuery->orWhere('name', 'LIKE', "%{$word}%")
-                                     ->orWhere('description', 'LIKE', "%{$word}%");
-                        }
-                    }
+        $categories = Category::with([
+            'foodItems' => function ($q) use ($query) {
 
-                    // بحث ذكي بالأسعار لو المستخدم كتب رقم أو أقل من
-                    if (str_contains($query, 'أقل') || str_contains($query, 'تحت') || str_contains($query, 'بـ')) {
-                        preg_match('/\d+/', $query, $matches);
-                        if (!empty($matches[0])) {
-                            $subQuery->orWhere('price', '<=', $matches[0]);
-                        }
-                    }
-                });
-            }
-        }, 'beverages'])->get();
+                if (!empty($query)) {
 
-        $userPreference = Auth::check() ? Auth::user()->preferences : null;
+                    $keywords = explode(' ', $query);
+
+                    $q->where(function ($subQuery) use ($keywords, $query) {
+
+                        foreach ($keywords as $word) {
+
+                            if (mb_strlen($word) > 1) {
+
+                                $subQuery->orWhere('name', 'LIKE', "%{$word}%")
+                                    ->orWhere('description', 'LIKE', "%{$word}%");
+                            }
+                        }
+
+                        // بحث ذكي بالأسعار لو المستخدم كتب رقم أو أقل من
+                        if (
+                            str_contains($query, 'أقل') ||
+                            str_contains($query, 'تحت') ||
+                            str_contains($query, 'بـ')
+                        ) {
+
+                            preg_match('/\d+/', $query, $matches);
+
+                            if (!empty($matches[0])) {
+                                $subQuery->orWhere('price', '<=', $matches[0]);
+                            }
+                        }
+                    });
+                }
+            },
+            'beverages'
+        ])->get();
+
+        $userPreference = Auth::check()
+            ? Auth::user()->preferences
+            : null;
 
         // حساب نسبة التوافق بالذكاء الاصطناعي لكل وجبة طعام
         $categories->each(function ($category) use ($userPreference) {
+
             $category->foodItems = $category->foodItems->map(function ($food) use ($userPreference) {
-                $matchScore = 50; // النسبة الأساسية البداية
+
+                $matchScore = 50;
 
                 if ($userPreference) {
-                    if ($userPreference->max_budget && $food->price <= $userPreference->max_budget) {
+
+                    if (
+                        $userPreference->max_budget &&
+                        $food->price <= $userPreference->max_budget
+                    ) {
                         $matchScore += 20;
                     }
-                    if (isset($food->spicy_level) && $food->spicy_level == $userPreference->spicy_level) {
+
+                    if (
+                        isset($food->spicy_level) &&
+                        $food->spicy_level == $userPreference->spicy_level
+                    ) {
                         $matchScore += 15;
                     }
+
                     if (!empty($userPreference->favorite_ingredients)) {
-                        $favs = array_map('trim', explode(',', $userPreference->favorite_ingredients));
+
+                        $favs = array_map(
+                            'trim',
+                            explode(',', $userPreference->favorite_ingredients)
+                        );
+
                         foreach ($favs as $fav) {
-                            if (!empty($fav) && stripos($food->description ?? '', $fav) !== false) {
+
+                            if (
+                                !empty($fav) &&
+                                stripos(
+                                    $food->description ?? '',
+                                    $fav
+                                ) !== false
+                            ) {
                                 $matchScore += 10;
                                 break;
                             }
                         }
                     }
+
                     if (!empty($userPreference->disliked_ingredients)) {
-                        $dislikes = array_map('trim', explode(',', $userPreference->disliked_ingredients));
+
+                        $dislikes = array_map(
+                            'trim',
+                            explode(',', $userPreference->disliked_ingredients)
+                        );
+
                         foreach ($dislikes as $dislike) {
-                            if (!empty($dislike) && stripos($food->description ?? '', $dislike) !== false) {
+
+                            if (
+                                !empty($dislike) &&
+                                stripos(
+                                    $food->description ?? '',
+                                    $dislike
+                                ) !== false
+                            ) {
                                 $matchScore -= 30;
                                 break;
                             }
@@ -71,13 +124,21 @@ class CafeteriaController extends Controller
                     }
                 }
 
-                $food->ai_match_percentage = max(10, min(99, $matchScore));
+                $food->ai_match_percentage = max(
+                    10,
+                    min(99, $matchScore)
+                );
+
                 return $food;
+
             })->sortByDesc('ai_match_percentage');
         });
 
         // التأكد من توجيه الطلب لصفحة المنيو مع تمرير متغير البحث
-        return view('cafeteria.menu', compact('categories', 'query'));
+        return view(
+            'cafeteria.menu',
+            compact('categories', 'query')
+        );
     }
 
     /**
@@ -91,11 +152,19 @@ class CafeteriaController extends Controller
     public function showItem($type, $id)
     {
         if ($type === 'food') {
+
             $item = FoodItem::with('category')->findOrFail($id);
+
         } elseif ($type === 'beverage') {
+
             $item = Beverage::with('category')->findOrFail($id);
+
         } else {
-            return response()->json(['success' => false, 'message' => 'Invalid item type'], 400);
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid item type'
+            ], 400);
         }
 
         return response()->json([

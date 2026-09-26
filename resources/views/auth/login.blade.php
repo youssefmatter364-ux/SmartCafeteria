@@ -1,65 +1,207 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل دخول لوحة التحكم - كافيتريا الذكاء الاصطناعي</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="csrf-token"
+        content="{{ csrf_token() }}"
+    >
+
+    <title>تسجيل الدخول - Smart Cafeteria</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
-        body { font-family: 'Cairo', sans-serif; }
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen flex items-center justify-center p-4">
 
-    <div class="bg-white/95 backdrop-blur-md w-full max-w-md p-8 rounded-3xl shadow-2xl border border-slate-100">
+
+<body class="bg-slate-100 min-h-screen flex items-center justify-center">
+
+
+<div class="w-full max-w-md px-6">
+
+    <div class="bg-white rounded-3xl shadow-xl p-8">
+
+
+        {{-- Logo / Title --}}
+
         <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-900 text-white rounded-2xl shadow-lg text-3xl mb-4">
-                📊
+
+            <div class="text-5xl mb-4">
+                ☕
             </div>
-            <h1 class="text-2xl font-extrabold text-slate-900">لوحة تحكم الطلبات</h1>
-            <p class="text-slate-500 text-sm mt-1">الرجاء إدخال بيانات المشرف للمتابعة</p>
+
+            <h1 class="text-2xl font-bold text-slate-900">
+                Smart Cafeteria
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                تسجيل دخول العميل
+            </p>
+
         </div>
 
-        @if($errors->any())
-            <div class="bg-rose-50 border border-rose-200 text-rose-700 p-4 rounded-2xl mb-6 text-center text-sm font-semibold shadow-xs animate-pulse">
-                {{ $errors->first() }}
+
+        {{-- Error Messages --}}
+
+        @if ($errors->any())
+
+            <div class="bg-red-100 border border-red-200 text-red-700 rounded-xl p-4 mb-5 text-sm font-semibold">
+
+                @foreach ($errors->all() as $error)
+
+                    <div>
+                        {{ $error }}
+                    </div>
+
+                @endforeach
+
             </div>
+
         @endif
 
-        <form method="POST" action="/login" class="space-y-5">
+
+        {{-- Success Message --}}
+
+        @if (session('success'))
+
+            <div class="bg-green-100 border border-green-200 text-green-700 rounded-xl p-4 mb-5 text-sm font-semibold">
+
+                {{ session('success') }}
+
+            </div>
+
+        @endif
+
+
+        {{-- Customer Login Form --}}
+
+        <form
+            action="{{ route('login.store') }}"
+            method="POST"
+            class="space-y-5"
+        >
+
             @csrf
-            
-            <div>
-                <label class="block mb-2 font-bold text-slate-700 text-xs uppercase tracking-wider">البريد الإلكتروني</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">✉️</span>
-                    <input type="email" name="email" required placeholder="name@example.com" autocomplete="off"
-                        class="w-full bg-slate-50 border border-slate-200 rounded-2xl pr-11 pl-4 py-3.5 focus:outline-none focus:border-slate-900 focus:bg-white transition text-slate-800 text-sm font-medium">
-                </div>
-            </div>
+
+
+            {{-- Email --}}
 
             <div>
-                <label class="block mb-2 font-bold text-slate-700 text-xs uppercase tracking-wider">كلمة المرور</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-slate-400">🔒</span>
-                    <input type="password" name="password" required placeholder="••••••••••••"
-                        class="w-full bg-slate-50 border border-slate-200 rounded-2xl pr-11 pl-4 py-3.5 focus:outline-none focus:border-slate-900 focus:bg-white transition text-slate-800 text-sm font-medium">
-                </div>
+
+                <label
+                    for="email"
+                    class="block mb-2 font-bold text-slate-700 text-sm"
+                >
+                    البريد الإلكتروني
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    required
+                    autocomplete="email"
+                    placeholder="example@gmail.com"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                >
+
             </div>
 
-            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-2xl font-bold transition shadow-lg shadow-slate-900/20 active:scale-[0.99]">
-                تسجيل الدخول 🚀
+
+            {{-- Password --}}
+
+            <div>
+
+                <label
+                    for="password"
+                    class="block mb-2 font-bold text-slate-700 text-sm"
+                >
+                    كلمة المرور
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="********"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                >
+
+            </div>
+
+
+            {{-- Login Button --}}
+
+            <button
+                type="submit"
+                class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl py-3 transition text-sm cursor-pointer"
+            >
+                تسجيل الدخول 🔐
             </button>
+
         </form>
 
-        <!-- زرار العودة للمنيو -->
-        <div class="mt-6 text-center border-t border-slate-100 pt-5">
-            <a href="/menu" class="inline-flex items-center justify-center gap-2 w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-3.5 rounded-2xl font-bold transition text-sm">
-                <span>🍔</span> العودة إلى صفحة المنيو والموقع
+
+        {{-- Register --}}
+
+        <div class="text-center mt-6">
+
+            <p class="text-gray-500 text-sm mb-2">
+                ليس لديك حساب؟
+            </p>
+
+            <a
+                href="{{ route('register') }}"
+                class="text-blue-600 hover:text-blue-800 hover:underline text-sm font-bold"
+            >
+                إنشاء حساب جديد
             </a>
+
         </div>
+
+
+        {{-- Admin Login --}}
+
+        <div class="border-t border-gray-200 mt-6 pt-6 text-center">
+
+            <p class="text-gray-500 text-sm mb-2">
+                هل أنت مسؤول النظام؟
+            </p>
+
+            <a
+                href="{{ route('admin.login') }}"
+                class="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 px-5 py-2 rounded-xl text-sm font-bold transition"
+            >
+                دخول الأدمن ⚡
+            </a>
+
+        </div>
+
+
     </div>
+
+</div>
+
 
 </body>
 </html>
